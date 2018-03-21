@@ -1,0 +1,378 @@
+body {
+  font: 10px sans-serif;
+  background-color: #FFFFFF;
+  background-image: url(http://www.aflow.org/profiles/aflow/images/body_bg.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+}
+
+.logo {
+	float: left;
+}
+
+.logo a img {
+    width: 450px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    height: 130px;
+}
+
+#h1 {
+	display: inline-block;
+	font-size: 50px;
+  font-family: Montserrat, serif;
+	color: black;
+  position: relative;
+  left: 95px;
+  margin: 47.5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#test
+a {
+  color: blue;
+  font-size: 210%;
+}
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:active {
+  text-decoration: underline;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.Magnetic-spin {
+  display: inline-block;
+  position: absolute;
+  left: 350px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+#graphs-wrap {
+  vertical-align: top;
+  position: absolute;
+  top: 25%
+}
+
+#graph2-wrap {
+  display: inline-block;
+  position: absolute;
+  top:0%;
+  left:100%;
+}
+
+#graph1 {
+  display: inline-block;
+  position: relative;
+  top: 27%;
+}
+/*
+#graph2 {
+  display: inline-block;
+  position: absolute;
+}
+*/
+#legend-wrap {
+  /*height: 100px;*/
+  right: 25%;
+  top: 0px;
+  position: absolute;
+}
+
+.legend-values {
+  position: absolute;
+  font-size: 18px;
+  right: 100%;
+}
+
+.legend-values-lines {
+  position: absolute;
+  font-size: 18px;
+  left: 100%;
+}
+
+.legend-orbit {
+  position: absolute;
+  text-align: right;
+  width: 5px;
+}
+
+/*
+#s-orbital {
+  position: absolute;
+  font-size: 18px;
+  right: 100%;
+}
+#p-orbital {
+  position: absolute;
+  font-size: 18px;
+  right: 100%;
+}
+#d-orbital {
+  position: absolute;
+  font-size: 18px;
+  right: 100%;
+}
+#f-orbital {
+  position: absolute;
+  font-size: 18px;
+  right: 100%;
+}
+
+#s-orbital_line {
+  position: absolute;
+  font-size: 18px;
+  left: 100%;
+}
+#p-orbital_line {
+  position: absolute;
+  font-size: 18px;
+  left: 100%;
+}
+#d-orbital_line {
+  position: absolute;
+  font-size: 18px;
+  left: 100%;
+}
+#f-orbital_line {
+  position: absolute;
+  font-size: 18px;
+  left: 100%;
+}
+
+#s {
+  position: absolute;
+  text-align: right;
+  width: 5px;
+}
+
+#p {
+  position: absolute;
+  text-align: right;
+  width: 5px;
+}
+
+#d {
+  position: absolute;
+  text-align: right;
+  width: 5px;
+}
+
+#f {
+  position: absolute;
+  text-align: right;
+  width: 5px;
+}
+*/
+#graph2-buttons {
+  display: none;
+  position: absolute;
+
+
+  left: -moz-calc(4% + 0.5px);
+  left: -webkit-calc(4% + 0.5px);
+  left: calc(4% + 0.5px);
+
+  width: -moz-calc(84% - 2.5px);
+  width: -webkit-calc(84% - 2.5px);
+  width: calc(84% - 2.5px);
+  height: 20px;
+}
+
+#changeElement-wrap {
+  position: absolute;
+  left: 0%;
+  width: 50%;
+  height: 100%;
+}
+
+#changeElement-button {
+  position: absolute;
+  left: 0%;
+  width: 100%;
+  background-color: #e6f3ff;
+  border: solid 1px;
+  height: 100%;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#changeElement-button i {
+  display: inline-block;
+  text-align: right;
+  height: 100%;
+  width: 100%;
+  width: 95%;
+  font-size: 13px;
+}
+
+#changeElement-button-text {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top:10%;
+  font-size: 15px;
+}
+
+#Element-dropdown {
+  display: none;
+  position: absolute;
+  top: -moz-calc(100% + 2px);
+  top: -webkit-calc(100% + 2px);
+  top: calc(100% + 2px);
+  width: -moz-calc(100% - 0px);
+  width: -webkit-calc(100% - 0px);
+  width: calc(100% - 0px);
+  background-color: #f5f7ff;
+}
+
+.dropdownElements {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: solid 1px;
+  border-top: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+#changeElement-button:hover + #Element-dropdown {
+  display: block;
+}
+
+#Element-dropdown:hover {
+  display: block;
+}
+
+#changeOrbital-wrap {
+  position: absolute;
+  left: 50%;
+  width: 50%;
+  width: -moz-calc(50% + 0.5px);
+  width: -webkit-calc(50% + 0.5px);
+  width: calc(50% + 0.5px);
+  height: 100%;
+}
+
+#changeOrbital-button {
+  position: absolute;
+  left: 0%;
+  width: 100%;
+  background-color: #e6f3ff;
+  border: solid 1px;
+  height: 100%;
+  cursor: pointer;
+  font-weight: bold;
+
+}
+
+#changeOrbital-button i {
+  text-align: right;
+  height: 100%;
+  width: 100%;
+  width: 95%;
+  font-size: 13px;
+}
+
+#changeOrbital-button-text {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top:10%;
+  font-size: 15px;
+}
+
+#Orbital-dropdown {
+  display: none;
+  position: absolute;
+  top: -moz-calc(100% + 2px);
+  top: -webkit-calc(100% + 2px);
+  top: calc(100% + 2px);
+  width: -moz-calc(100% + 0px);
+  width: -webkit-calc(100% + 0px);
+  width: calc(100% + 0px);
+  background-color: #f5f7ff;
+}
+
+.dropdownOrbitals {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: solid 1px;
+  border-top: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+#changeOrbital-button:hover + #Orbital-dropdown {
+  display: block;
+}
+
+#Orbital-dropdown:hover {
+  display: block;
+}
+
+#JSmol-wrap {
+  position: absolute;
+}
+
+#applet1 {
+  position: absolute;
+}
+
+#applet2 {
+  position: absolute;
+}
+
+#customBandPath {
+  position: absolute;
+  left: 4%;
+  top: 66%;
+}
+
+#selectBandPath {
+  position: relative;
+  background-color: #e6f3ff;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  border: solid 1px;
+  width: 170px;
+}
+
+#bandPathText {
+  position: relative;
+  background-color: #f5f7ff;
+  font-size: 13px;
+  border: solid 1px;
+  width: 165px;
+}

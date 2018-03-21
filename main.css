@@ -1,0 +1,66 @@
+
+body {
+	/*overflow-x: hidden;*/
+    max-width: 100%;
+	height: 100%;
+	margin: 0px;
+    padding: 0px;
+    background-color: #FFFFFF;
+    background-image: url(http://www.aflow.org/profiles/aflow/images/body_bg.jpg);
+    background-size: 100%;
+    background-attachment: fixed;
+    font-family: Montserrat;
+    background-repeat: no-repeat;
+    color: #6b6b6b;
+	text-align: center;
+	position: relative;
+  	
+}
+
+.header {
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.logo {
+	float: left;
+}
+
+.logo a img {
+    width: 450px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    height: 130px;
+}
+
+h1 {
+	display: inline-block;
+	font-size: 50px;
+  	font-family: Montserrat, Garamond, serif;
+  	color: #37388A;
+  	position: relative;
+  	margin: 47.5px;
+  	float: none;
+  	text-align: center;
+}
+
+
+#footer {
+
+  	font-size: 0.75rem;
+  	padding-top: 50rem;
+}
+
+.tbl:hover {
+	
+}
+
+.table{
+	td:nth-child(1){
+		width:25%;
+	}
+}
+
+
