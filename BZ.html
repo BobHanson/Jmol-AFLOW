@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Brillouin Zone</title>
+    <link rel="stylesheet" type="text/css" href="BZ.css"/>
+    <link rel="icon" type="image/x-icon" href="http://www.aflowlib.org/images/favicon.ico" />
+    <script src="d3.js"></script>
+    <script src="http://aflowlib.mems.duke.edu/users/jmolers/test/jsmol/JSmol.min.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+</head>
+<body>
+	<div class="header">
+        <div class='logo'>
+            <a><!--href='\.' title=''> -->
+                <img src='http://www.aflowlib.org/images/logo.png' alt='AFlow' align="top" />
+            </a>
+        </div>
+        <div id="h1"></div>
+  </div>
+	<div id="magnetic-wrap" class="Magnetic-spin" style="display:none">
+    <input type="radio" id="magnetic_majority" name="magnetic" onclick="magneticClicked(this)"/>
+		<label for="magnetic_majority">Majority</label>
+    &nbsp;&nbsp;
+    <input type="radio" id="magnetic_minority" name="magnetic" onclick="magneticClicked(this)"/>
+		<label for="magnetic_minority">Minority</label>
+		&nbsp;&nbsp;
+    <input type="radio" id="magnetic_both" checked="true" name="magnetic" onclick="magneticClicked(this)"/>
+		<label for="magnetic_both">Both</label>
+	</div>
+	<div id="graphs-wrap">
+		<div class="graphs" id="graph1"></div>
+
+		<div id="graph2-wrap">
+
+			<div id="legend-wrap">
+				<div class="legend-orbit">
+					<div class='legend-values' id='s-orbital'></div>
+					<div class='legend-values-lines' id='s-orbital_line'></div>
+				</div>
+				<div class="legend-orbit">
+					<div class='legend-values' id='p-orbital'></div>
+					<div class='legend-values-lines' id='p-orbital_line'></div>
+				</div>
+				<div class="legend-orbit">
+					<div class='legend-values' id='d-orbital'></div>
+					<div class='legend-values-lines' id='d-orbital_line'></div>
+				</div>
+				<div class="legend-orbit">
+					<div class='legend-values' id='f-orbital'></div>
+					<div class='legend-values-lines' id='f-orbital_line'></div>
+				</div>
+			</div>
+
+			<div id="graph2-buttons">
+
+				<div id="changeElement-wrap">
+					<div id="changeElement-button">
+						<div id="changeElement-button-text">Element</div>
+						<i class="fa fa-chevron-down" id="elementArrow"></i>
+					</div>
+					<div id="Element-dropdown"></div>
+    		</div>
+
+				<div id="changeOrbital-wrap">
+					<div id="changeOrbital-button">
+						<div id="changeOrbital-button-text">Orbital</div>
+						<i class="fa fa-chevron-down" id="orbitalArrow"></i>
+					</div>
+					<div id="Orbital-dropdown"></div>
+				</div>
+			</div>
+			<div class="graphs" id="graph2"></div>
+		</div>
+	</div>
+	<div id="JSmol-wrap" style="top: 130px;">
+		<div id="applet1"></div>
+		<div id="applet2"></div>
+    <div id="test" style="position: absolute; top:25px; left: 50px;"></div>
+	</div>
+<div id="customBandPath">
+	<select id="selectBandPath" onchange="pathSelected(this)">
+	  <option value="-1">Custom Band Path</option>
+	  <div id="option"></div>
+	</select>
+	<br>
+	<input type="text" id="bandPathText" readonly="true" placeholder="Add paths from the menu"</input>
+</div>
+    <script type="text/javascript" src="BZ.js"></script>
+</body>
+</html>

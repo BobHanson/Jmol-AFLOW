@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Brillouin Zone</title>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+    <link rel="icon" type="image/x-icon" href="http://www.aflowlib.org/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="new_search.css">
+
+</head>
+<body>
+    <div class="header">
+        <div class='logo'>
+            <a><!--href='\.' title=''> -->
+                <img src='http://www.aflowlib.org/images/logo.png' alt='AFlow' align="top" />
+            </a>
+        </div>
+        <h1>The Brillouin Zone</h1>
+    </div>
+		<div id="advanced_search" style="position: relative; display: block">
+        <div id="top_bar">
+            <div id="top_box">
+                <div id="general_wrap">
+                    <div id="choose_database"> <!--the list of lattice types-->
+                        <input id="TRI" type="button" class="database" class="left_database" onclick="button_clicked(this)" value="TRI" title="Trigonal">
+                        <input id="MCL" type="button" class="database" onclick="button_clicked(this)" value="MCL" title="Monoclinic">
+                        <input id="MCLC" type="button" class="database" onclick="button_clicked(this)" value="MCLC" title="Base-Centered Monoclinic">
+                        <input id="ORC" type="button" class="database" onclick="button_clicked(this)" value="ORC" title="Orthorhombic">
+                        <input id="ORCC" type="button" class="database" onclick="button_clicked(this)" value="ORCC" title="Base-Centered Orthorhombic">
+                        <input id="ORCI" type="button" class="database" onclick="button_clicked(this)" value="ORCI" title="Body-Centered Orthorhombic">
+                        <input id="ORCF" type="button" class="database" onclick="button_clicked(this)" value="ORCF" title="Face-Centered Orthorhombic">
+                        <input id="TET" type="button" class="database" onclick="button_clicked(this)" value="TET" title="Tetragonal">
+                        <input id="BCT" type="button" class="database" onclick="button_clicked(this)" value="BCT" title="Body-Centered Tetragonal">
+                        <input id="RHL" type="button" class="database" onclick="button_clicked(this)" value="RHL" title="Rhombohedral">
+                        <input id="HEX" type="button" class="database" onclick="button_clicked(this)" value="HEX" title="Hexagonal">
+                        <input id="CUB" type="button" class="database" onclick="button_clicked(this)" value="CUB" title="Cubic">
+                        <input id="BCC" type="button" class="database" onclick="button_clicked(this)" value="BCC" title="Body-Centered Cubic">
+                        <input id="FCC" type="button" class="database" onclick="button_clicked(this)" value="FCC" title="Face-Centered Cubic">
+                        <input id="CAT.icsd" type="button" class="database" class="right_database" onclick="button_clicked(this)" value="ANY" title="Any unit cell structure">
+                        <div id="database_choices"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="bar_shadow"></div>
+        </div>
+	<div id="status_bar">
+  </div>
+	<div id="chooseBox"><!--the colored buttons for searching with-->
+		<input id="clear" type="button" class="clear" onclick="clearSearch(this)" value="CLEAR " title="Select this button to clear your current search parameters.">
+		<input id="NOT" type="button" class="selector" onclick="boxClicked(this)" value="NOT" title="Select this button to exclude elements from your search.">
+		<input id="MidnightBlue" type="button" class="selector" onclick="boxClicked(this)" value="blue" title="Set 1"><b> + </b>
+		<input id="DarkSlateGrey" type="button" class="selector" onclick="boxClicked(this)" value="red" title="Set 2"><b> + </b>
+		<input id="CornflowerBlue" type="button" class="selector" onclick="boxClicked(this)" value="yellow" title="Set 3">
+		<input id="ONLY" type="button" class="selector" onclick="onlyClicked(this)" value="ONLY " title="Select this button to include in your search only the elements which you have already selected.">
+		<input id="help" type ="button" class="helpBtn" onclick="openHelp()" value="?">
+	</div>
+	<div id="search-options-wrap">
+		<input id="searchOptions" type="button" onclick="showSearch()" value="Search Options"><br />
+		<form id="selectOptions">
+			<input id="orange" type="button" class="searchbtn" onclick="orangeClicked(this)" title="Display only compounds which have different symmetries for original and relaxed structures."><br />
+			<!--<input id="red" type="button" class="searchbtn" onclick="redClicked(this)" title="Display compounds which incorrectly determine the locations of K-points."><br />-->
+			<input id="afluxBox" type="text" title="Input comma-separated search terms in AFLUX syntax." placeholder="Advanced Search" onkeypress="checkKey(event)">
+			<input type="text" style="display: none"> <!--this needs to be here so the input box actually works-->
+			<input id="goBtn" type="button" value="GO!" title="Search the AFLOW database." onclick="advSearch()">
+		</form>
+	</div>
+						<div id="initialHelp"><!--visible before you click on a lattice type-->
+						Welcome to the Brillouin Zone! With this site, you can investigate the relationship between electronic band structures, Brillouin zones, and crystal structures. After a simple process of selecting parameters with which to search through compounds from the AFLOW database, you will be directed to one of two pages. <br /><br />
+						<img src="BZ-help-page-images/web.png" alt="WEB" /><br />
+						The first page is the AFLOW entry page for your chosen crystral structure, where you can carry out a more thorough analysis of that structure and find all the details of the VASP calculation <i>(<a href="http://www.vasp.at/" target="_blank">what's VASP?</a>)</i> leading from the original structure to the final relaxed structure. On this page you will find an interactive three-dimensional model of the crystal structure that can be displayed in a variety of ways, including primitive cell, conventional cell, 20×20×20-angstrom block, and superimposed over its original structure with an indication of the RMSD between original and relaxed structures. <br /><br />
+						<img src="BZ-help-page-images/BZ.png" alt="BZ" /><br />
+						On the second page, you can interactively manipulate synchronized three-dimensional models of the crystal structure and its associated Brillouin zone. This page allows you to check the contributions of specific atoms, specific orbitals, and magnetic spin to the electronic band structure, as well as construct custom band structure diagrams.<br /><br />
+						To get started, select a Bravais lattice variation from the menu above.<br /><br />
+
+						<i><a href="help.html" target="_blank">More info</a>.</i>
+						</div>
+						<div id="search_criterion">
+						<div id="top_margin"></div>
+						<div id="periodic-table-wrap">
+						<div id="periodic-table">
+								<ul class="main" style="list-style-type:none; margin-bottom:0;">
+
+										<!-- ROW 1 -->
+
+										<li data-name="H" data-pos="1" data-nb="1.0079" class="element" id="H" onclick="elementClicked(this)">H
+												<div class="column_label">1A</div>
+												<div class="row_label">1</div>
+										</li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li data-name="He" data-pos="2" data-nb="4.0026" class="element" id="He" onclick="elementClicked(this)">He
+												<div style="font-size:9px" class="column_label">NOBLE</div>
+										</li>
+
+										<!-- ROW 2 -->
+
+										<li data-name="Li" data-pos="3" data-nb="6.941" class="element" id="Li" onclick="elementClicked(this)">Li
+												<div class="row_label">2</div>
+										</li>
+										<li data-name="Be" data-pos="4" data-nb="9.0122" class="element" id="Be" onclick="elementClicked(this)">Be
+												<div class="column_label">2A</div>
+										</li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li data-name="B" data-pos="5" data-nb="10.811" class="element" id="B" onclick="elementClicked(this)">B
+												<div class="column_label">3A</div>
+										</li>
+										<li data-name="C" data-pos="6" data-nb="12.011" class="element" id="C" onclick="elementClicked(this)">C
+												<div class="column_label">4A</div>
+										</li>
+										<li data-name="N" data-pos="7" data-nb="14.007" class="element" id="N" onclick="elementClicked(this)">N
+												<div class="column_label">5A</div>
+										</li>
+
+										<li data-name="O" data-pos="8" data-nb="15.999" class="element" id="O" onclick="elementClicked(this)">O
+												<div class="column_label">6A</div>
+										</li>
+										<li data-name="F" data-pos="9" data-nb="18.998" class="element" id="F" onclick="elementClicked(this)">F
+												<div class="column_label">7A</div>
+										</li>
+										<li data-name="Ne" data-pos="10" data-nb="20.180" class="element" id="Ne" onclick="elementClicked(this)">Ne</li>
+
+										<!-- ROW 3 -->
+
+										<li data-name="Na" data-pos="11" data-nb="22.990" class="element" id="Na" onclick="elementClicked(this)">Na
+												<div class="row_label">3</div>
+										</li>
+										<li data-name="Mg" data-pos="12" data-nb="24.305" class="element" id="Mg" onclick="elementClicked(this)">Mg</li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li class="empty"></li>
+
+										<li class="empty"></li>
+										<li class="empty"></li>
+										<li data-name="Al" data-pos="13" data-nb="26.982" class="element" id="Al" onclick="elementClicked(this)">Al</li>
+										<li data-name="Si" data-pos="14" data-nb="28.086" class="element" id="Si" onclick="elementClicked(this)">Si</li>
+										<li data-name="P" data-pos="15" data-nb="30.974" class="element" id="P" onclick="elementClicked(this)">P</li>
+
+										<li data-name="S" data-pos="16" data-nb="32.065" class="element" id="S" onclick="elementClicked(this)">S</li>
+										<li data-name="Cl" data-pos="17" data-nb="35.453" class="element" id="Cl" onclick="elementClicked(this)">Cl</li>
+										<li data-name="Ar" data-pos="18" data-nb="39.948" class="element" id="Ar" onclick="elementClicked(this)">Ar</li>
+
+										<!-- ROW 4 -->
+
+										<li data-name="K" data-pos="19" data-nb="39.098" class="element" id="K" onclick="elementClicked(this)">K
+												<div class="row_label">4</div>
+										</li>
+										<li data-name="Ca" data-pos="20" data-nb="40.078" class="element" id="Ca" onclick="elementClicked(this)">Ca</li>
+										<li data-name="Sc" data-pos="21" data-nb="44.956" class="element" id="Sc" onclick="elementClicked(this)">Sc
+												<div class="column_label">3B</div>
+										</li>
+										<li data-name="Ti" data-pos="22" data-nb="47.867" class="element" id="Ti" onclick="elementClicked(this)">Ti
+												<div class="column_label">4B</div>
+										</li>
+										<li data-name="V" data-pos="23" data-nb="50.942" class="element" id="V" onclick="elementClicked(this)">V
+												<div class="column_label">5B</div>
+										</li>
+
+										<li data-name="Cr" data-pos="24" data-nb="51.996" class="element" id="Cr" onclick="elementClicked(this)">Cr
+												<div class="column_label">6B</div>
+										</li>
+										<li data-name="Mn" data-pos="25" data-nb="54.938" class="element" id="Mn" onclick="elementClicked(this)">Mn
+												<div class="column_label">7B</div>
+										</li>
+										<li data-name="Fe" data-pos="26" data-nb="55.845" class="element" id=Fe onclick="elementClicked(this)">Fe
+												<img draggable="false" src="http://www.aflowlib.org/images/arrow_left.png" class="arrow" alt="<------"/>
+										</li>
+										<li data-name="Co" data-pos="27" data-nb="58.933" class="element" id="Co" onclick="elementClicked(this)">Co
+												<div class="column_label">8</div>
+										</li>
+										<li data-name="Ni" data-pos="28" data-nb="58.693" class="element" id="Ni" onclick="elementClicked(this)">Ni
+												<img draggable="false" src="http://www.aflowlib.org/images/arrow_right.png" class="arrow arrow_right" alt="------>"/>
+										</li>
+
+										<li data-name="Cu" data-pos="29" data-nb="63.546" class="element" id="Cu" onclick="elementClicked(this)">Cu
+												<div class="column_label">1B</div>
+										</li>
+										<li data-name="Zn" data-pos="30" data-nb="65.39" class="element" id="Zn" onclick="elementClicked(this)">Zn
+												<div class="column_label">2B</div>
+										</li>
+										<li data-name="Ga" data-pos="31" data-nb="69.723" class="element" id="Ga" onclick="elementClicked(this)">Ga</li>
+										<li data-name="Ge" data-pos="32" data-nb="72.64" class="element" id="Ge" onclick="elementClicked(this)">Ge</li>
+										<li data-name="As" data-pos="33" data-nb="74.922" class="element" id="As" onclick="elementClicked(this)">As</li>
+
+										<li data-name="Se" data-pos="34" data-nb="78.96" class="element" id="Se" onclick="elementClicked(this)">Se</li>
+										<li data-name="Br" data-pos="35" data-nb="79.904" class="element" id="Br" onclick="elementClicked(this)">Br</li>
+										<li data-name="Kr" data-pos="36" data-nb="83.80" class="element" id="Kr" onclick="elementClicked(this)" >Kr</li>
+
+										<!-- ROW 5 -->
+
+										<li data-name="Rb" data-pos="37" data-nb="85.468" class="element" id="Rb" onclick="elementClicked(this)">Rb
+												<div class="row_label">5</div>
+										</li>
+										<li data-name="Sr" data-pos="38" data-nb="87.62" class="element" id="Sr" onclick="elementClicked(this)">Sr</li>
+										<li data-name="Y" data-pos="39" data-nb="88.906" class="element" id="Y" onclick="elementClicked(this)">Y</li>
+										<li data-name="Zr" data-pos="40" data-nb="91.224" class="element" id="Zr" onclick="elementClicked(this)">Zr</li>
+										<li data-name="Nb" data-pos="41" data-nb="92.906" class="element" id="Nb" onclick="elementClicked(this)">Nb</li>
+
+										<li data-name="Mo" data-pos="42" data-nb="95.94" class="element" id="Mo" onclick="elementClicked(this)">Mo</li>
+										<li data-name="Tc" data-pos="43" data-nb="(96)" class="element" id="Tc" onclick="elementClicked(this)">Tc</li>
+										<li data-name="Ru" data-pos="44" data-nb="101.07" class="element" id="Ru" onclick="elementClicked(this)">Ru</li>
+										<li data-name="Rh" data-pos="45" data-nb="102.91" class="element" id="Rh" onclick="elementClicked(this)">Rh</li>
+										<li data-name="Pd" data-pos="46" data-nb="106.42" class="element" id="Pd" onclick="elementClicked(this)">Pd</li>
+
+										<li data-name="Ag" data-pos="47" data-nb="107.87" class="element" id="Ag" onclick="elementClicked(this)">Ag</li>
+										<li data-name="Cd" data-pos="48" data-nb="112.41" class="element" id="Cd" onclick="elementClicked(this)">Cd</li>
+										<li data-name="In" data-pos="49" data-nb="114.82" class="element" id="In" onclick="elementClicked(this)">In</li>
+										<li data-name="Sn" data-pos="50" data-nb="118.71" class="element" id="Sn" onclick="elementClicked(this)">Sn</li>
+										<li data-name="Sb" data-pos="51" data-nb="121.76" class="element" id="Sb" onclick="elementClicked(this)">Sb</li>
+
+										<li data-name="Te" data-pos="52" data-nb="127.60" class="element" id="Te" onclick="elementClicked(this)">Te</li>
+										<li data-name="I" data-pos="53" data-nb="126.90" class="element" id="I" onclick="elementClicked(this)">I</li>
+										<li data-name="Xe" data-pos="54" data-nb="131.29" class="element" id="Xe" onclick="elementClicked(this)">Xe</li>
+
+										<!-- ROW 6 -->
+
+										<li data-name="Cs" data-pos="55" data-nb="132.91" class="element" id="Cs" onclick="elementClicked(this)">Cs
+												<div class="row_label">6</div>
+										</li>
+										<li data-name="Ba" data-pos="56" data-nb="137.33" class="element" id="Ba" onclick="elementClicked(this)">Ba</li>
+										<li data-name="La-Lu" data-pos="57-71" class="empty" style="color:#555; font-size:11px; font-weight:bold; padding-top:3px">La<br> -
+												<br>Lu</li>
+										<li data-name="Hf" data-pos="72" data-nb="178.49" class="element" id="Hf" onclick="elementClicked(this)">Hf</li>
+										<li data-name="Ta" data-pos="73" data-nb="180.95" class="element" id="Ta" onclick="elementClicked(this)">Ta</li>
+
+										<li data-name="W" data-pos="74" data-nb="183.64" class="element" id="W" onclick="elementClicked(this)">W</li>
+										<li data-name="Re" data-pos="75" data-nb="186.21" class="element" id="Re" onclick="elementClicked(this)">Re</li>
+										<li data-name="Os" data-pos="76" data-nb="190.23" class="element" id="Os" onclick="elementClicked(this)">Os</li>
+										<li data-name="Ir" data-pos="77" data-nb="192.22" class="element" id="Ir" onclick="elementClicked(this)">Ir</li>
+										<li data-name="Pt" data-pos="78" data-nb="195.08" class="element" id="Pt" onclick="elementClicked(this)">Pt</li>
+
+										<li data-name="Au" data-pos="79" data-nb="196.97" class="element" id="Au" onclick="elementClicked(this)">Au</li>
+										<li data-name="Hg" data-pos="80" data-nb="200.59" class="element" id="Hg" onclick="elementClicked(this)">Hg</li>
+										<li data-name="Tl" data-pos="81" data-nb="204.38" class="element" id="Tl" onclick="elementClicked(this)">Tl</li>
+										<li data-name="Pb" data-pos="82" data-nb="207.2" class="element" id="Pb" onclick="elementClicked(this)">Pb</li>
+										<li data-name="Bi" data-pos="83" data-nb="208.96" class="element" id="Bi" onclick="elementClicked(this)">Bi</li>
+
+										<li data-name="Po" data-pos="84" data-nb="(209)" class="element" id="Po" onclick="elementClicked(this)">Po</li>
+										<li data-name="At" data-pos="85" data-nb="(210)" class="element" id="At" onclick="elementClicked(this)">At</li>
+										<li data-name="Rn" data-pos="86" data-nb="(222)" class="element" id="Rn" onclick="elementClicked(this)">Rn</li>
+			
+												<!--ROW 7-->
+												<li data-name="Fr" data-pos="87" data-nb="(223)" class="element" id="Fr" onclick="elementClicked(this)">Fr
+													<div class="row_label">7</div></li>
+												<li data-name="Ra" data-pos="88" data-nb="(226)" class="element" id="Ra" onclick="elementClicked(this)">Ra</li>
+												<li data-name="Ac-Lr" data-pos="89-103" class="empty" style="color:#555; font-size:11px; font-weight:bold; padding-top:3px">Ac<br> -
+												<br>Lr</li>
+												<li data-name="Rf" data-pos="104" data-nb="(265)" class="element" id="Rf" onclick="elementClicked(this)">Rf</li>
+												<li data-name="Db" data-pos="105" data-nb="(268)" class="element" id="Db" onclick="elementClicked(this)">Db</li>
+												<li data-name="Sg" data-pos="106" data-nb="(271)" class="element" id="Sg" onclick="elementClicked(this)">Sg</li>
+												<li data-name="Bh" data-pos="107" data-nb="(270)" class="element" id="Bh" onclick="elementClicked(this)">Bh</li>
+												<li data-name="Hs" data-pos="108" data-nb="(277)" class="element" id="Hs" onclick="elementClicked(this)">Hs</li>
+												<li data-name="Mt" data-pos="109" data-nb="(276)" class="element" id="Mt" onclick="elementClicked(this)">Mt</li>
+												<li data-name="Ds" data-pos="110" data-nb="(281)" class="element" id="Ds" onclick="elementClicked(this)">Ds</li>
+												<li data-name="Rg" data-pos="111" data-nb="(280)" class="element" id="Rg" onclick="elementClicked(this)">Rg</li>
+												<li data-name="Cn" data-pos="112" data-nb="(285)" class="element" id="Cn" onclick="elementClicked(this)">Cn</li>
+												<li data-name="Nh" data-pos="113" data-nb="(286)" class="element" id="Nh" onclick="elementClicked(this)">Nh</li>
+												<li data-name="Fl" data-pos="114" data-nb="(289)" class="element" id="Fl" onclick="elementClicked(this)">Fl</li>
+												<li data-name="Mc" data-pos="115" data-nb="(289)" class="element" id="Mc" onclick="elementClicked(this)">Mc</li>
+												<li data-name="Lv" data-pos="116" data-nb="(293)" class="element" id="Lv" onclick="elementClicked(this)">Lv</li>
+												<li data-name="Ts" data-pos="117" data-nb="(294)" class="element" id="Ts" onclick="elementClicked(this)">Ts</li>
+												<li data-name="Og" data-pos="118" data-nb="(294)" class="element" id="Og" onclick="elementClicked(this)">Og</li>
+
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+                        <li class="empty flat">
+                            <div id="triangle"></div>
+                        </li>
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+                        <li class="empty flat"></li>
+                    </ul>
+
+         <ul class="main" style="list-style-type:none; margin-top:0">
+			<!--La-Lu-->
+            <li class="empty"></li>
+            <li class="empty"></li>
+            <li data-name="La" data-pos="57" data-nb="138.91" class="element" id="La" onclick="elementClicked(this)">La</li>
+            <li data-name="Ce" data-pos="58" data-nb="140.12" class="element" id="Ce" onclick="elementClicked(this)">Ce</li>
+            <li data-name="Pr" data-pos="59" data-nb="140.91" class="element" id="Pr" onclick="elementClicked(this)">Pr</li>
+            <li data-name="Nd" data-pos="60" data-nb="144.24" class="element" id="Nd" onclick="elementClicked(this)">Nd</li>
+            <li data-name="Pm" data-pos="61" data-nb="(145)" class="element" id="Pm" onclick="elementClicked(this)">Pm</li>
+            <li data-name="Sm" data-pos="62" data-nb="150.36" class="element" id="Sm" onclick="elementClicked(this)">Sm</li>
+            <li data-name="Eu" data-pos="63" data-nb="151.96" class="element" id="Eu" onclick="elementClicked(this)">Eu</li>
+            <li data-name="Gd" data-pos="64" data-nb="157.25" class="element" id="Gd" onclick="elementClicked(this)">Gd</li>
+            <li data-name="Tb" data-pos="65" data-nb="158.93" class="element" id="Tb" onclick="elementClicked(this)">Tb</li>
+            <li data-name="Dy" data-pos="66" data-nb="162.50" class="element" id="Dy" onclick="elementClicked(this)">Dy</li>
+            <li data-name="Ho" data-pos="67" data-nb="164.93" class="element" id="Ho" onclick="elementClicked(this)">Ho</li>
+            <li data-name="Er" data-pos="68" data-nb="167.26" class="element" id="Er" onclick="elementClicked(this)">Er</li>
+            <li data-name="Tm" data-pos="69" data-nb="168.93" class="element" id="Tm" onclick="elementClicked(this)">Tm</li>
+            <li data-name="Yb" data-pos="70" data-nb="173.05" class="element" id="Yb" onclick="elementClicked(this)">Yb</li>
+            <li data-name="Lu" data-pos="71" data-nb="174.97" class="element" id="Lu" onclick="elementClicked(this)">Lu</li>
+            <li class="empty"></li>
+		    </ul>
+		    <ul class="main" style="list-style-type:none; margin-top:0">
+			<!--Ac-Lr-->
+			<li class="empty"></li>
+			<li class="empty"></li>
+			<li data-name="Ac" data-pos="89" data-nb="(227)" class="element" id="Ac" onclick="elementClicked(this)">Ac</li>
+			<li data-name="Th" data-pos="90" data-nb="232.04" class="element" id="Th" onclick="elementClicked(this)">Th</li>
+			<li data-name="Pa" data-pos="91" data-nb="231.04" class="element" id="Pa" onclick="elementClicked(this)">Pa</li>
+			<li data-name="U" data-pos="92" data-nb="238.03" class="element" id="U" onclick="elementClicked(this)">U</li>
+			<li data-name="Np" data-pos="93" data-nb="(237)" class="element" id="Np" onclick="elementClicked(this)">Np</li>
+			<li data-name="Pu" data-pos="94" data-nb="(244)" class="element" id="Pu" onclick="elementClicked(this)">Pu</li>
+			<li data-name="Am" data-pos="95" data-nb="(243)" class="element" id="Am" onclick="elementClicked(this)">Am</li>
+			<li data-name="Cm" data-pos="96" data-nb="(247)" class="element" id="Cm" onclick="elementClicked(this)">Cm</li>
+			<li data-name="Bk" data-pos="97" data-nb="(247)" class="element" id="Bk" onclick="elementClicked(this)">Bk</li>
+			<li data-name="Cf" data-pos="98" data-nb="(251)" class="element" id="Cf" onclick="elementClicked(this)">Cf</li>
+			<li data-name="Es" data-pos="99" data-nb="(252)" class="element" id="Es" onclick="elementClicked(this)">Es</li>
+			<li data-name="Fm" data-pos="100" data-nb="(257)" class="element" id="Fm" onclick="elementClicked(this)">Fm</li>
+			<li data-name="Md" data-pos="101" data-nb="(258)" class="element" id="Md" onclick="elementClicked(this)">Md</li>
+			<li data-name="No" data-pos="102" data-nb="(259)" class="element" id="No" onclick="elementClicked(this)">No</li>
+			<li data-name="Lr" data-pos="103" data-nb="(262" class="element" id="Lr" onclick="elementClicked(this)">Lr</li>
+			<li class="empty"></li>
+                    </ul>
+                 
+            </div>
+            </div>
+            </div>
+	<div id="export-wrap">
+		<a type="button" id="export" onclick="exportSearch(this)"> Download Search Results as CSV File </a>
+	</div>
+</div>
+
+
+<div id="test"></div>
+
+
+<!--
+    <p id="footer">Center for Material Genomics, Material Science, Duke University</p>
+-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="new_app.js"></script>
+
+<!--
+    <script type="text/javascript">
+        function myfunction() {
+            alert('Hello');
+        }   
+    </script>
+-->
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>
